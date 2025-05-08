@@ -12,127 +12,260 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0a0a0a;
+            color: #f8f8f8;
+            font-family: 'Courier New', monospace;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
-
+        
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
         .container {
             text-align: center;
-            position: relative;
-        }
-
-        .logo {
-            font-optical-sizing: auto;
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: 0.5rem;
-            margin-bottom: 1rem;
+            padding: 2rem;
             position: relative;
             z-index: 2;
-            background: linear-gradient(135deg, #fff 0%, #666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeIn 2s ease-out;
         }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: #666;
+        
+        .text-container {
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: 300;
             letter-spacing: 0.2rem;
-            animation: slideUp 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+          /*  border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.7);
+          */
         }
-
-        .background-effect {
+        
+        @media (min-width: 768px) {
+            .text-container {
+                font-size: 4rem;
+                padding: 2rem;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .text-container {
+                font-size: 5rem;
+            }
+        }
+        
+        .animated-text {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .glow {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, #222 0%, transparent 70%);
-            opacity: 0.5;
-            z-index: 1;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            opacity: 0;
+            animation: pulsate 4s ease-in-out infinite;
         }
-
-        .accent-line {
-            width: 150px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #333, transparent);
-            margin: 2rem auto;
-            animation: expand 1.5s ease-out;
-        }
-
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expand {
-            from {
-                width: 0;
-                opacity: 0;
-            }
-            to {
-                width: 150px;
-                opacity: 1;
-            }
-        }
-
-        .glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle at center, rgba(51,51,51,0.3) 0%, transparent 70%);
-            filter: blur(50px);
-            z-index: 0;
-            animation: pulse 4s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
+        
+        @keyframes pulsate {
+            0%, 100% {
+                opacity: 0.1;
             }
             50% {
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
             }
         }
     </style>
 </head>
 <body>
-    <div class="glow"></div>
+    <canvas id="particleCanvas"></canvas>
+    
     <div class="container">
-        <div class="background-effect"></div>
-        <h1 class="logo">&lt;XEVEN /&gt;</h1>
-        <div class="accent-line"></div>
-        <p class="tagline">Solutions</p>
+        <div class="text-container">
+            <div class="animated-text" id="text"></div>
+            <div class="glow"></div>
+        </div>
     </div>
+
+    <script>
+        // Particle system for 3D background
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particleCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.particleCount = 100;
+                
+                this.init();
+                this.animate();
+                
+                // Handle resize
+                window.addEventListener('resize', () => this.handleResize());
+                this.handleResize();
+            }
+            
+            init() {
+                // Create particles
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        z: Math.random() * 1000,
+                        radius: Math.random() * 1 + 0.5,
+                        color: `rgba(0, ${Math.floor(Math.random() * 155) + 100}, ${Math.floor(Math.random() * 155) + 100}, ${Math.random() * 0.5 + 0.2})`,
+                        speed: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+            
+            handleResize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                
+                // Update particle positions for the new dimensions
+                this.particles.forEach(particle => {
+                    particle.x = Math.random() * this.canvas.width;
+                    particle.y = Math.random() * this.canvas.height;
+                });
+            }
+            
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw each particle
+                this.particles.forEach(particle => {
+                    // Calculate perspective scale for 3D effect
+                    const scale = 1000 / (1000 - particle.z);
+                    const x = (particle.x - this.canvas.width / 2) * scale + this.canvas.width / 2;
+                    const y = (particle.y - this.canvas.height / 2) * scale + this.canvas.height / 2;
+                    const radius = particle.radius * scale;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.fill();
+                });
+            }
+            
+            update() {
+                this.particles.forEach(particle => {
+                    // Move particle toward viewer (z gets smaller)
+                    particle.z -= particle.speed;
+                    
+                    // If particle is too close, reset to far away
+                    if (particle.z <= 0) {
+                        particle.z = 1000;
+                        particle.x = Math.random() * this.canvas.width;
+                        particle.y = Math.random() * this.canvas.height;
+                    }
+                });
+            }
+            
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Text transformation function
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElement = document.getElementById('text');
+            const startText = "< / >";
+            const endText = "<XEVEN />";
+            
+            // Initialize particle system
+            new ParticleSystem();
+            
+            // Display initial text
+            textElement.textContent = startText;
+            
+            // After a delay, perform the transformation
+            setTimeout(() => {
+                transformText(textElement, startText, endText);
+            }, 2000);
+        });
+        
+        function transformText(element, from, to) {
+            let iterations = 0;
+            const maxIterations = 10;
+            let currentText = from;
+            const finalText = to;
+            
+            // Characters that will be used during transformation
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789<>/";
+            
+            const interval = setInterval(() => {
+                if (iterations >= maxIterations) {
+                    clearInterval(interval);
+                    element.textContent = finalText;
+                    return;
+                }
+                
+                // Gradually transform the text
+                const progress = iterations / maxIterations;
+                let newText = "";
+                
+                for (let i = 0; i < to.length; i++) {
+                    // If we're beyond the length of the original text, take from the final
+                    if (i >= from.length) {
+                        if (Math.random() < progress) {
+                            newText += to[i];
+                        } else {
+                            newText += chars.charAt(Math.floor(Math.random() * chars.length));
+                        }
+                        continue;
+                    }
+                    
+                    // If characters are the same in both strings
+                    if (from[i] === to[i]) {
+                        newText += from[i];
+                        continue;
+                    }
+                    
+                    // If this character should transform
+                    if (Math.random() < progress) {
+                        newText += to[i];
+                    } else {
+                        newText += from[i];
+                    }
+                }
+                
+                // Update the text
+                element.textContent = newText;
+                iterations++;
+            }, 100);
+        }
+    </script>
 </body>
 </html>
