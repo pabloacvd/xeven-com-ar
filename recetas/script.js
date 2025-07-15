@@ -100,7 +100,7 @@ function displayRecipes() {
             
             ${recipe.ingredients.length > 0 ? `
                 <div class="recipe-section">
-                    <h3 class="ingredients">Ingredients</h3>
+                    <h3 class="ingredients">Ingredientes</h3>
                     <ul>
                         ${recipe.ingredients.map(ingredient => `<li>${escapeHtml(ingredient)}</li>`).join('')}
                     </ul>
@@ -109,7 +109,7 @@ function displayRecipes() {
             
             ${recipe.procedure.length > 0 ? `
                 <div class="recipe-section">
-                    <h3 class="procedure">Procedure</h3>
+                    <h3 class="procedure">Pasos</h3>
                     <ol>
                         ${recipe.procedure.map(step => `<li>${escapeHtml(step)}</li>`).join('')}
                     </ol>
