@@ -17,3 +17,4 @@
 3. 170 grados x 30 mins
 
 ## Images
+./recipes/images/chocolate_chip_cookies.jpg
