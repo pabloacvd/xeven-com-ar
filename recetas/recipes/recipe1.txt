@@ -1,26 +1,19 @@
-# Classic Chocolate Chip Cookies
+# Pan para Bella
 
-## Ingredients
-* 2 1/4 cups all-purpose flour
-* 1 tsp baking soda
-* 1 tsp salt
-* 1 cup butter, softened
-* 3/4 cup granulated sugar
-* 3/4 cup packed brown sugar
-* 2 large eggs
-* 2 tsp vanilla extract
-* 2 cups chocolate chips
+## Ingredientes
+* 250g harina 000
+* 150g harina integral
+* 100g avena
+* 2 huevo
+* 220ml leche
+* 3g de levadura seca
+* 20g azucar
+* 35g manteca pomada
+* 8g sal
 
-## Procedure
-1. Preheat oven to 375°F (190°C).
-2. In a medium bowl, whisk together flour, baking soda, and salt.
-3. In a large bowl, cream together butter and both sugars until light and fluffy.
-4. Beat in eggs one at a time, then stir in vanilla.
-5. Gradually blend in the flour mixture.
-6. Stir in chocolate chips.
-7. Drop rounded tablespoons of dough onto ungreased cookie sheets.
-8. Bake for 9-11 minutes or until golden brown.
-9. Cool on baking sheet for 2 minutes before removing to wire rack.
+## Pasos
+1. formar masa y dejar doblar
+2. armar bollos y levar 1 hora
+3. 170 grados x 30 mins
 
 ## Images
-./recipes/images/chocolate_chip_cookies.jpg
