@@ -1,0 +1,38 @@
+# Classic Beef Stew
+
+## Ingredients
+* 2 lbs beef chuck, cut into 2-inch cubes
+* 3 tbsp all-purpose flour
+* 2 tbsp vegetable oil
+* 1 large onion, chopped
+* 3 cloves garlic, minced
+* 3 tbsp tomato paste
+* 1/2 cup red wine
+* 4 cups beef broth
+* 2 bay leaves
+* 1 tsp dried thyme
+* 4 large carrots, cut into chunks
+* 3 large potatoes, cubed
+* 2 celery stalks, chopped
+* 1 cup frozen peas
+* Salt and pepper to taste
+* 2 tbsp fresh parsley, chopped
+
+## Procedure
+1. Season beef cubes with salt and pepper, then coat with flour.
+2. Heat oil in a large Dutch oven over medium-high heat.
+3. Brown beef cubes on all sides, working in batches if necessary.
+4. Remove beef and set aside.
+5. In the same pot, sauté onion until softened, about 5 minutes.
+6. Add garlic and tomato paste, cook for 1 minute.
+7. Pour in red wine to deglaze, scraping up any browned bits.
+8. Return beef to pot and add broth, bay leaves, and thyme.
+9. Bring to a boil, then reduce heat and simmer covered for 1.5 hours.
+10. Add carrots, potatoes, and celery.
+11. Continue simmering for 30-45 minutes until vegetables are tender.
+12. Stir in frozen peas and cook for 5 minutes.
+13. Remove bay leaves and adjust seasoning.
+14. Garnish with fresh parsley before serving.
+
+## Images
+./recipes/images/beef_stew.jpg
