@@ -1,26 +1,18 @@
-# Authentic Spaghetti Carbonara
+# Pan de hamburguesas
 
 ## Ingredients
-* 400g spaghetti
-* 200g guanciale or pancetta, diced
-* 4 large egg yolks
-* 1 whole egg
-* 100g Pecorino Romano cheese, grated
-* 50g Parmesan cheese, grated
-* Fresh black pepper
-* Salt for pasta water
+* 250g harina
+* 1 huevo
+* 110ml leche
+* 1cda levadura seca / 1.5g
+* 13g azucar
+* 18g manteca pomada
+* 5g sal
 
 ## Procedure
-1. Bring a large pot of salted water to boil and cook spaghetti according to package directions.
-2. While pasta cooks, heat a large skillet over medium heat.
-3. Add guanciale and cook until crispy and golden, about 5-7 minutes.
-4. In a bowl, whisk together egg yolks, whole egg, and both cheeses.
-5. Add plenty of freshly ground black pepper to the egg mixture.
-6. When pasta is almost done, reserve 1 cup of pasta cooking water.
-7. Drain pasta and immediately add to the skillet with guanciale.
-8. Remove from heat and quickly toss with the egg mixture.
-9. Add pasta water gradually while tossing to create a creamy sauce.
-10. Serve immediately with extra cheese and black pepper.
+1. formar masa y dejar doblar
+2. armar bollos de 115g
+3. 1+ hora levado
 
 ## Images
 ./recipes/images/spaghetti_carbonara.jpg
