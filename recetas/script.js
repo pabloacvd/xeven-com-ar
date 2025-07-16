@@ -60,7 +60,7 @@ async function loadRecipes() {
 
 function parseRecipe(content, filename) {
     const lines = content.split('\n');
-    let title = filename.replace(/\.(md|txt)$/, '').replace(/_/g, ' ');
+    let title = "err"; //filename.replace(/\.(md|txt)$/, '').replace(/_/g, ' ');
     let ingredients = [];
     let procedure = [];
     let images = [];
@@ -89,7 +89,7 @@ function parseRecipe(content, filename) {
             }
         }
     }
-
+if (title.equals("err")) return false;
     return {
         title,
         ingredients,
@@ -131,7 +131,7 @@ function displayRecipes() {
             
             ${recipe.images.length > 0 ? `
                 <div class="recipe-section">
-                    <h3 class="images">Images</h3>
+                    <h3 class="images">Imágenes</h3>
                     <div class="recipe-images">
                         ${recipe.images.map(image => `
                             <img src="${escapeHtml(image)}" alt="Recipe image" class="recipe-image" 
