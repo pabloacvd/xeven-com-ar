@@ -1,0 +1,16 @@
+# Masa para tarta
+
+## Ingredients
+* Harina: 300g
+* Aceite: 20 ml
+* Sal: 1 cda
+* Agua bien bien fría: 150ml
+
+## Procedure
+1. Mezclar todos los ingredientes y formar una masa.
+2. Dejar descansar 5-10 minutos.
+3. Estirar en molde y llevar al horno por 10-15 minutos.
+4. Agregar el relleno y terminar de cocinar.
+
+## Images
+./recipes/images/beef_stew.jpg
