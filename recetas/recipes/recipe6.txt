@@ -1,0 +1,21 @@
+# Bizcochuelo
+
+## Ingredients
+* Huevos: 180-200g (3 huevos de 60-65g aprox.)
+* Harina: 90g
+* Azúcar: 90g
+* Vainilla: 1 cda / 4gr
+* Sal: 1 pizca
+* Polvo de hornear: 1 cda / 5gr
+* Aceite: 30ml / 30gr
+* Leche: 30ml / 31gr
+
+## Procedure
+1. Batir huevos y azúcar 10 min mínimo, hasta punto letra.
+2. Agregar sal, vainilla y polvo de hornear antes de terminar de batir.
+3. Incorporar harina con espátula. Mezclar una cucharada de la preparación con la leche y el aceite.
+4. Incorporar el batido a la preparación, con espátula.
+5. Enmoldar (18cm enmantecado y enharinado) y poner en horno precalentado a 170 grados por 40 minutos.
+
+## Images
+./recipes/images/beef_stew.jpg
