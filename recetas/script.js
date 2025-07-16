@@ -13,7 +13,7 @@ async function loadRecipes() {
     
     let recipeNumber = 1;
     let consecutiveFailures = 0;
-    const maxConsecutiveFailures = 5; // Stop after 5 consecutive failures
+    const maxConsecutiveFailures = 2; // Stop after 5 consecutive failures
 
     while (consecutiveFailures < maxConsecutiveFailures) {
         const filename = `recipe${recipeNumber}.txt`;
@@ -41,7 +41,7 @@ async function loadRecipes() {
         recipeNumber++;
         
         // Optional: Add a reasonable upper limit to prevent infinite loops
-        if (recipeNumber > 20) {
+        if (recipeNumber > 10) {
             console.warn('Reached maximum recipe number limit (1000)');
             break;
         }
