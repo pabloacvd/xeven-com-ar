@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function loadRecipes() {
-    showMessage('Loading recipes...');
+    showMessage('Cargando recetas...');
     allRecipes = [];
     
     let recipeNumber = 1;
@@ -103,7 +103,7 @@ function displayRecipes() {
     const container = document.getElementById('recipesContainer');
     
     if (filteredRecipes.length === 0) {
-        container.innerHTML = '<div class="no-recipes">No recipes found matching your search.</div>';
+        container.innerHTML = '<div class="no-recipes">No se encontraron recetas.</div>';
         return;
     }
 
