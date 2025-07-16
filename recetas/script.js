@@ -1,14 +1,6 @@
 let allRecipes = [];
 let filteredRecipes = [];
 
-// Recipe filenames to load
-const recipeFiles = [
-    'recipe1.txt',
-    'recipe2.txt',
-    'recipe3.txt',
-    'recipe4.txt'
-];
-
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchBox').addEventListener('input', handleSearch);
     document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
@@ -18,8 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadRecipes() {
     showMessage('Loading recipes...');
     allRecipes = [];
+    
+    let recipeNumber = 1;
+    let consecutiveFailures = 0;
+    const maxConsecutiveFailures = 5; // Stop after 5 consecutive failures
 
-    for (const filename of recipeFiles) {
+    while (consecutiveFailures < maxConsecutiveFailures) {
+        const filename = `recipe${recipeNumber}.txt`;
+        
         try {
             const response = await fetch(`./recipes/${filename}`);
             if (response.ok) {
@@ -28,13 +26,28 @@ async function loadRecipes() {
                 if (recipe) {
                     allRecipes.push(recipe);
                 }
+                consecutiveFailures = 0; // Reset counter on success
             } else {
-                console.warn(`Could not load ${filename}: ${response.status}`);
+                consecutiveFailures++;
+                if (consecutiveFailures === 1) {
+                    console.log(`Recipe ${recipeNumber} not found, checking for more...`);
+                }
             }
         } catch (error) {
+            consecutiveFailures++;
             console.error(`Error loading ${filename}:`, error);
         }
+        
+        recipeNumber++;
+        
+        // Optional: Add a reasonable upper limit to prevent infinite loops
+        if (recipeNumber > 1000) {
+            console.warn('Reached maximum recipe number limit (1000)');
+            break;
+        }
     }
+
+    console.log(`Loaded ${allRecipes.length} recipes (checked up to recipe${recipeNumber - 1}.txt)`);
 
     if (allRecipes.length === 0) {
         showError('No recipes found. Make sure your recipe files are in the ./recipes folder.');
@@ -100,7 +113,7 @@ function displayRecipes() {
             
             ${recipe.ingredients.length > 0 ? `
                 <div class="recipe-section">
-                    <h3 class="ingredients">Ingredientes</h3>
+                    <h3 class="ingredients">Ingredients</h3>
                     <ul>
                         ${recipe.ingredients.map(ingredient => `<li>${escapeHtml(ingredient)}</li>`).join('')}
                     </ul>
@@ -109,7 +122,7 @@ function displayRecipes() {
             
             ${recipe.procedure.length > 0 ? `
                 <div class="recipe-section">
-                    <h3 class="procedure">Pasos</h3>
+                    <h3 class="procedure">Procedure</h3>
                     <ol>
                         ${recipe.procedure.map(step => `<li>${escapeHtml(step)}</li>`).join('')}
                     </ol>
