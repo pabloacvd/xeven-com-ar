@@ -18,4 +18,4 @@
 7. Meter al horno, 15 minutos o hasta dorar.
 
 ## Images
-./recipes/bizcochitos.jpg
+./recipes/images/bizcochitos.jpg
