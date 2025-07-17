@@ -13,6 +13,9 @@
 1. formar masa y dejar doblar
 2. armar bollos de 115g
 3. 1+ hora levado
+4. Opcional: Pintar con doradura.
+5. Precalentar el horno a 160 grados.
+6. Cocinar por 30-40 minutos, hasta que estén dorados.
 
 ## Images
 ./recipes/images/spaghetti_carbonara.jpg
