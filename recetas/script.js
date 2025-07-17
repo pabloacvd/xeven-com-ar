@@ -86,6 +86,7 @@ function parseRecipe(content, filename) {
                 line.includes('.jpg') || line.includes('.png') || line.includes('.jpeg') || 
                 line.includes('.gif') || line.includes('.webp')) {
                 images.push(line);
+                console.log("Agrego 1 img");
             }
         }
     }
