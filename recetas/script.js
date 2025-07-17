@@ -89,7 +89,7 @@ function parseRecipe(content, filename) {
             }
         }
     }
-if (title.equals("err")) return false;
+    if (title === "err") return false;
     return {
         title,
         ingredients,
