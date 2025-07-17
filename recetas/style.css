@@ -49,19 +49,41 @@ body {
     flex-wrap: wrap;
 }
 
-.search-box {
+.multiplier-label {
+    font-size: 1em;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.control-input {
     padding: 12px 20px;
     border: 2px solid #3498db;
     border-radius: 25px;
     font-size: 1em;
     outline: none;
     transition: all 0.3s ease;
-    min-width: 250px;
+    min-width: 100px;
+    margin-right: 8px;
+    background: #fff;
 }
 
-.search-box:focus {
+.control-input:focus {
     border-color: #2980b9;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.multiplier-box {
+    width: 80px;
+    min-width: 80px;
+    max-width: 120px;
+}
+
+/* Ajuste para que search-box y multiplier-box se vean igual */
+.search-box {
+    min-width: 250px;
+    margin-right: 8px;
 }
 
 .refresh-btn {

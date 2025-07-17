@@ -1,9 +1,11 @@
 let allRecipes = [];
 let filteredRecipes = [];
+let currentMultiplier = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchBox').addEventListener('input', handleSearch);
     document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
+    document.getElementById('multiplierBox').addEventListener('input', handleMultiplierChange);
     loadRecipes();
 });
 
@@ -115,7 +117,7 @@ function displayRecipes() {
                 <div class="recipe-section">
                     <h3 class="ingredients">Ingredientes</h3>
                     <ul>
-                        ${recipe.ingredients.map(ingredient => `<li>${escapeHtml(ingredient)}</li>`).join('')}
+                        ${recipe.ingredients.map(ingredient => `<li>${escapeHtml(applyMultiplierToIngredient(ingredient, currentMultiplier))}</li>`).join('')}
                     </ul>
                 </div>
             ` : ''}
@@ -158,6 +160,24 @@ function handleSearch(event) {
     }
     
     displayRecipes();
+}
+
+function handleMultiplierChange(event) {
+    const value = parseFloat(event.target.value);
+    currentMultiplier = isNaN(value) ? 1 : value;
+    displayRecipes();
+}
+
+function applyMultiplierToIngredient(ingredient, multiplier) {
+    return ingredient.replace(/(\d+([.,]\d+)?)/g, (match) => {
+        const original = match.replace(',', '.');
+        const num = parseFloat(original);
+        if (isNaN(num)) return match;
+        let result = num * multiplier;
+        result = (Math.round(result * 10) / 10).toString();
+        if (match.includes(',')) result = result.replace('.', ',');
+        return result;
+    });
 }
 
 function escapeHtml(text) {
