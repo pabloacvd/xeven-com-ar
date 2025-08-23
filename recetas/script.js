@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('searchBox').addEventListener('input', handleSearch);
     document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
     document.getElementById('multiplierBox').addEventListener('input', handleMultiplierChange);
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+    if (query !== null){ document.getElementById("searchBox").value = query; }
     loadRecipes();
 });
 
