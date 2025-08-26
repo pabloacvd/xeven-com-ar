@@ -7,18 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
     searchBox.addEventListener('input', handleSearch);
     document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
     document.getElementById('multiplierBox').addEventListener('input', handleMultiplierChange);
-
-    loadRecipes();
     
     const params = new URLSearchParams(window.location.search);
     const searchTerm = params.get("q");
-    if (searchTerm !== null){
-        searchBox.value = searchTerm;
-        searchBox.dispatchEvent(new Event("input", { bubbles: true }));
-    }
+    loadRecipes(searchTerm);
 });
 
-async function loadRecipes() {
+async function loadRecipes(initialSearchTerm = null) {
     showMessage('Cargando recetas...');
     allRecipes = [];
     
@@ -65,8 +60,14 @@ async function loadRecipes() {
         return;
     }
 
-    filteredRecipes = [...allRecipes];
-    displayRecipes();
+    if (initialSearchTerm) {
+        const searchBox = document.getElementById("searchBox");
+        searchBox.value = initialSearchTerm;
+        handleSearch({ target: searchBox });
+    } else {
+        filteredRecipes = [...allRecipes];
+        displayRecipes();
+    }
 }
 
 function parseRecipe(content, filename) {
