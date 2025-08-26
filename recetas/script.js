@@ -157,17 +157,22 @@ function displayRecipes() {
 
 function handleSearch(event) {
     const searchTerm = event.target.value.toLowerCase();
-    
+
+    const params = new URLSearchParams(window.location.search);
+
     if (searchTerm === '') {
+        params.delete("q");
         filteredRecipes = [...allRecipes];
     } else {
+        params.set("q", value);
         filteredRecipes = allRecipes.filter(recipe => 
             recipe.title.toLowerCase().includes(searchTerm) ||
             recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm)) ||
             recipe.procedure.some(step => step.toLowerCase().includes(searchTerm))
         );
     }
-    
+    const newUrl = window.location.pathname + "?" + params.toString();
+    history.replaceState(null, "", newUrl);    
     displayRecipes();
 }
 
