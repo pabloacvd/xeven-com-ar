@@ -3,7 +3,8 @@ let filteredRecipes = [];
 let currentMultiplier = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('searchBox').addEventListener('input', handleSearch);
+    const searchBox = document.getElementById("searchBox");
+    searchBox.addEventListener('input', handleSearch);
     document.getElementById('refreshBtn').addEventListener('click', loadRecipes);
     document.getElementById('multiplierBox').addEventListener('input', handleMultiplierChange);
 
@@ -12,13 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(window.location.search);
     const searchTerm = params.get("q");
     if (searchTerm !== null){
-        document.getElementById("searchBox").value = searchTerm;
-        filteredRecipes = allRecipes.filter(recipe => 
-            recipe.title.toLowerCase().includes(searchTerm) ||
-            recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm)) ||
-            recipe.procedure.some(step => step.toLowerCase().includes(searchTerm))
-        );
-        displayRecipes();
+        searchBox.value = searchTerm;
+        searchBox.dispatchEvent(new Event("input", { bubbles: true }));
     }
 });
 
