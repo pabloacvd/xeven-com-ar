@@ -164,7 +164,7 @@ function handleSearch(event) {
         params.delete("q");
         filteredRecipes = [...allRecipes];
     } else {
-        params.set("q", value);
+        params.set("q", searchTerm);
         filteredRecipes = allRecipes.filter(recipe => 
             recipe.title.toLowerCase().includes(searchTerm) ||
             recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm)) ||
