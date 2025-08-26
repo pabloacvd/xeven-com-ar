@@ -10,9 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
     loadRecipes();
     
     const params = new URLSearchParams(window.location.search);
-    const query = params.get("q");
-    if (query !== null){
-        document.getElementById("searchBox").value = query; 
+    const searchTerm = params.get("q");
+    if (searchTerm !== null){
+        document.getElementById("searchBox").value = searchTerm;
+        filteredRecipes = allRecipes.filter(recipe => 
+            recipe.title.toLowerCase().includes(searchTerm) ||
+            recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm)) ||
+            recipe.procedure.some(step => step.toLowerCase().includes(searchTerm))
+        );
+        displayRecipes();
     }
 });
 
@@ -50,8 +56,8 @@ async function loadRecipes() {
         recipeNumber++;
         
         // Optional: Add a reasonable upper limit to prevent infinite loops
-        if (recipeNumber > 10) {
-            console.warn('Reached maximum recipe number limit (1000)');
+        if (recipeNumber > 50) {
+            console.warn('Reached maximum recipe number limit');
             break;
         }
     }
